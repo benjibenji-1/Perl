@@ -2,21 +2,10 @@
 using PearlNecklace;
 
 var pearlBag = new Pearlbag();
-for (int i = 0; i < 35; i++)
-{
-    pearlBag.
-}
-
 
 Pearl pearlTest = new Pearl();
+var necklace = new Necklace(pearlBag);
 
-
-
-int matches = 0;
-foreach (var pearl in pearlBag)
-{
-    if (pearl.Equals(pearlTest))
-    {
-        matches++;
-    }
-}
+Console.WriteLine("Necklace sorted");
+Console.WriteLine(necklace);
+Console.WriteLine("Necklace sorted end");

@@ -30,5 +30,13 @@ namespace PearlNecklace
 
             return matches;
         }
+        public Pearlbag()
+        {
+            for (int i = 0; i < 35; i++)
+            {
+                _pearls.Add(new Pearl());
+            }
+        }
+
     }
 }

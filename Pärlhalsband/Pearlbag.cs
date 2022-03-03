@@ -10,13 +10,11 @@ namespace PearlNecklace
 {
     class Pearlbag : IPearlbag
     {
-        List<Pearl> _pearls = new List<Pearl>();
-
+        public List<Pearl> _pearls = new List<Pearl>();
         public void Sort()
         {
             _pearls.Sort();
         }
-
         public int Find(Pearl otherPearl)
         {
             int matches = 0;
@@ -27,8 +25,16 @@ namespace PearlNecklace
                     matches++;
                 }
             }
-
             return matches;
         }
+
+        public Pearlbag()
+        {
+            for (int i = 0; i < 35; i++)
+            {
+                _pearls.Add(new Pearl());
+            }
+        }
+
     }
 }

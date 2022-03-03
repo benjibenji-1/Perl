@@ -3,4 +3,8 @@ using PearlNecklace;
 
 var pearlBag = new Pearlbag();
 Pearl pearlTest = new Pearl();
-Console.WriteLine($"Number of identical pearls: {pearlBag.Find(pearlTest)}");
+var necklace = new Necklace(pearlBag);
+
+Console.WriteLine("Necklace sorted");
+Console.WriteLine(necklace);
+Console.WriteLine("Necklace sorted end");

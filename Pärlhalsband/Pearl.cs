@@ -51,7 +51,7 @@ namespace PearlNecklace
 
 		public override string ToString()
 		{
-			return $"{Size}mm\n{Color}\n{Shape}\n{Type}\n{Price} sek";
+			return $"{Size}mm\n{Color}\n{Shape}\n{Type}\n{Price} sek\n \n";
 		}
 
         public bool Equals(IPearl other)

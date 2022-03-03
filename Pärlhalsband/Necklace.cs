@@ -16,11 +16,13 @@ namespace PearlNecklace
         public override string ToString()
         {
             string returnString = "";
+            int returnPrice = 0;
             foreach (var item in this._pearls)
             {
                 returnString += $"{item} ";
+                returnPrice += item.Price;
             }
-            return returnString;
+            return $"{returnString}\n Total price of necklace:{returnPrice} ";
         }
         public Necklace(Pearlbag pearlbag)
         {

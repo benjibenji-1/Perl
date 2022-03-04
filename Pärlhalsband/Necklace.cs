@@ -8,7 +8,6 @@ namespace PearlNecklace
 {
     class Necklace : Pearlbag
     {
-        List<Pearl> _necklacePearls = new List<Pearl>();
         public void Sort()
         {
             _pearls.Sort();
@@ -24,9 +23,8 @@ namespace PearlNecklace
             }
             return $"{returnString}\n Total price of necklace:{returnPrice} ";
         }
-        public Necklace(Pearlbag pearlbag)
+        public Necklace(int numberOfPearls) : base(numberOfPearls)
         {
-            _necklacePearls = pearlbag._pearls;
             Sort();
         }
     }

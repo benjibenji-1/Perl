@@ -29,11 +29,11 @@ namespace PearlNecklace
 
 		public int CompareTo(IPearl other)
         {
-			if (Size != other.Size)
-				return Size.CompareTo(other.Size);
-			if (Color != other.Color)
-				return Color.CompareTo(other.Color);
-			return Shape.CompareTo(other.Shape);
+			if (this.Size != other.Size)
+				return this.Size.CompareTo(other.Size);
+			if (this.Color != other.Color)
+				return this.Color.CompareTo(other.Color);
+			return this.Shape.CompareTo(other.Shape);
         }
 		public void RandomInit()
 		{

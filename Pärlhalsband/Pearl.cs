@@ -44,9 +44,14 @@ namespace PearlNecklace
 			Type = (PearlType)rnd.Next((int)PearlType.Freshwater, (int)PearlType.Saltwater + 1);
 		}
 
-		public Pearl()
+		public static class Factory
 		{
-			RandomInit();
+			public static Pearl CreateRandomPearl()
+			{
+				var p = new Pearl();
+				p.RandomInit();
+				return p;
+			}
 		}
 
 		public override string ToString()

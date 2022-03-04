@@ -1,10 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PearlNecklace;
-var testPearl = new Pearl();
-var pearlBag = new Pearlbag(1);
-Console.WriteLine(pearlBag);
-
-Pearl pearlTest = new Pearl();
-var necklace = new Necklace(35);
-Console.WriteLine(necklace);
+var p = Pearl.Factory.CreateRandomPearl();
+Console.WriteLine("Create a couple of Random pearls");
+Console.WriteLine(Pearl.Factory.CreateRandomPearl());
+Console.WriteLine(Pearl.Factory.CreateRandomPearl());
 

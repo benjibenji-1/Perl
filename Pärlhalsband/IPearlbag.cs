@@ -10,8 +10,6 @@ namespace PearlNecklace
 {
     internal interface IPearlbag
     {
-        void Sort();
-
         int Find(Pearl otherPearl); //Hitta pärla, size color shape, om finns ja/nej(kanske index)
     }
 }

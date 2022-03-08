@@ -1,5 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PearlNecklace;
+
+
+using var database = new AddDbContext();
+
+
 var p = Pearl.Factory.CreateRandomPearl();
 Console.WriteLine("Create a couple of Random pearls");
 Console.WriteLine(Pearl.Factory.CreateRandomPearl());

@@ -8,7 +8,10 @@ using PearlNecklace;
 
 namespace PearlNecklace
 {
-	internal class Pearl : IPearl
+	public enum PearlColor { Black, White, Pink }
+	public enum PearlShape { Round, Tear }
+	public enum PearlType { Freshwater, Saltwater }
+	internal class Pearl
 	{
 		//const int MinPearlSize = 5;
 		//const int MaxPearlSize = 25;
@@ -30,7 +33,7 @@ namespace PearlNecklace
 			}
 		}
 
-		public int CompareTo(IPearl other)
+		public int CompareTo(Pearl other)
         {
 			if (this.Size != other.Size)
 				return this.Size.CompareTo(other.Size);
@@ -62,7 +65,7 @@ namespace PearlNecklace
 			return $"{Size}mm\n{Color}\n{Shape}\n{Type}\n{Price} sek\n \n";
 		}
 
-        public bool Equals(IPearl other)
+        public bool Equals(Pearl other)
         {
 			return (Size, Color, Shape, Type) == (other.Size, other.Color, other.Shape, other.Type);
 		}

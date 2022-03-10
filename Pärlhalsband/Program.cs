@@ -1,44 +1,50 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PearlNecklace;
-
-
 using var database = new AddDbContext();
-var necklaceTest = new Necklace();
-Console.WriteLine("Necklace full price:");
-Console.WriteLine($"{necklaceTest.price} {necklaceTest.ID}");
-Console.WriteLine("Necklace full price end");
 
-var neckklaceList = new List<Necklace>();
-foreach (var item in database.Necklaces)
-{
-    database.Necklaces.Remove(item);
-}
-foreach (var item in database.Pearls)
-{
-    database.Pearls.Remove(item);
-}
-for (int i = 0; i < 1000; i++)
-{
-    neckklaceList.Add(new Necklace());
-}
+//PopulateDatabase();
 
-neckklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
-foreach (var necklace in neckklaceList)
+
+
+var mostExpensiveNecklace = (from necklace in database.Necklaces
+          orderby necklace.price descending
+          select new { necklace.ID, necklace.price }).FirstOrDefault();
+Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensiveNecklace.price}");
+
+void PopulateDatabase()
 {
-    int necklaceID = necklace.ID;
-    foreach (var pearl in necklace.pearlBag._pearls)
+
+    //Clear database
+    var necklaceList = new List<Necklace>();
+    foreach (var item in database.Necklaces)
     {
-        pearl.necklaceID = necklaceID;
-        database.Pearls.Add(pearl);
+        database.Necklaces.Remove(item);
     }
+    foreach (var item in database.Pearls)
+    {
+        database.Pearls.Remove(item);
+    }
+    for (int i = 0; i < 1000; i++)
+    {
+        necklaceList.Add(new Necklace());
+    }
+
+
+    //Add necklaces
+    necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
+    database.SaveChanges();
+
+    //Add pearls
+    foreach (Necklace necklace in necklaceList)
+    {
+        foreach (Pearl pearl in necklace.pearlBag._pearls)
+        {
+            Console.WriteLine($"Necklace ID: {necklace.ID}");
+            Console.WriteLine($"Previous Pearl ID: {pearl.necklaceID}");
+            pearl.necklaceID = necklace.ID;
+            database.Pearls.Add(pearl);
+            Console.WriteLine($"New Pearl ID: {pearl.necklaceID}");
+        }
+    }
+    database.SaveChanges();
 }
-
-
-database.SaveChanges();
-
-
-var p = Pearl.Factory.CreateRandomPearl();
-Console.WriteLine("Create a couple of Random pearls");
-Console.WriteLine(Pearl.Factory.CreateRandomPearl());
-Console.WriteLine(Pearl.Factory.CreateRandomPearl());
-

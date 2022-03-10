@@ -19,5 +19,12 @@ namespace PearlNecklace
             options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PearlNecklaceDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Necklace>()
+                .Property(b => b.ID)
+                .ValueGeneratedOnAdd();
+        }
+
     }
 }

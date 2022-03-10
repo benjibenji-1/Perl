@@ -11,7 +11,7 @@ using PearlNecklace;
 namespace PearlNecklace.Migrations
 {
     [DbContext(typeof(AddDbContext))]
-    [Migration("20220310123513_test1")]
+    [Migration("20220310135845_test1")]
     partial class test1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,29 +25,32 @@ namespace PearlNecklace.Migrations
 
             modelBuilder.Entity("PearlNecklace.Necklace", b =>
                 {
-                    b.Property<int>("necklaceID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("necklaceID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("price")
                         .HasColumnType("int");
 
-                    b.HasKey("necklaceID");
+                    b.HasKey("ID");
 
                     b.ToTable("Necklaces");
                 });
 
             modelBuilder.Entity("PearlNecklace.Pearl", b =>
                 {
-                    b.Property<int>("pearlID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("pearlID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("Color")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<int>("Shape")
@@ -59,7 +62,10 @@ namespace PearlNecklace.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("pearlID");
+                    b.Property<int>("necklaceID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
 
                     b.ToTable("Pearls");
                 });

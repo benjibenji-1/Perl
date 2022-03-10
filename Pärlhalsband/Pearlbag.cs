@@ -21,7 +21,7 @@ namespace PearlNecklace
 {
     class Pearlbag
     {
-        public int pearlbagID { get; set; }
+        public int ID { get; set; }
 
         public virtual List<Pearl> _pearls { get; set; }
         public int numberOfPearls 
@@ -65,7 +65,6 @@ namespace PearlNecklace
         }
         public Pearlbag()
         {
-
         }
 
     }

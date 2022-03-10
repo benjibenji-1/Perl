@@ -45,18 +45,27 @@ namespace PearlNecklace
             return matches;
         }
 
+        public static class Factory
+        {
+            public static Pearlbag CreateRandomPearlbag()
+            {
+                var returnBag = new Pearlbag();
+                var rndList = new List<Pearl>();
+                var rnd = new Random();
+                int pearls = rnd.Next(10, 51);
+                for (int i = 0; i < pearls; i++)
+                {
+                    Pearl pearl = Pearl.Factory.CreateRandomPearl();
+                    rndList.Add(pearl);
+
+                }
+                returnBag._pearls = rndList;
+                return returnBag;
+            }
+        }
         public Pearlbag()
         {
-            var rndList = new List<Pearl>();
-            var rnd = new Random();
-            int pearls = rnd.Next(10, 51);
-            for (int i = 0; i < pearls; i++)
-            {
-                Pearl pearl = Pearl.Factory.CreateRandomPearl();
-                rndList.Add(pearl);
-                
-            }
-            _pearls = rndList;
+
         }
 
     }

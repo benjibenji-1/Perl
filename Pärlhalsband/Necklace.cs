@@ -9,7 +9,7 @@ namespace PearlNecklace
     class Necklace
     {
         public int necklaceID { get; set; }
-        public Pearlbag pearlBag = new Pearlbag();
+        public Pearlbag pearlBag = Pearlbag.Factory.CreateRandomPearlbag();
         public int price { 
             get
             {

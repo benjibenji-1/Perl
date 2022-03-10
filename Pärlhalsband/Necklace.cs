@@ -8,6 +8,7 @@ namespace PearlNecklace
 {
     class Necklace
     {
+        public int ID { get; set; }
         public Pearlbag pearlbag { get; set; }
 
         public void Sort()

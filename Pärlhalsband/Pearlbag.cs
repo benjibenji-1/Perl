@@ -21,6 +21,7 @@ namespace PearlNecklace
 {
     class Pearlbag
     {
+        public int ID { get; set; }
 
         public List<Pearl> _pearls = new List<Pearl>();
         public int numberOfPearls 

@@ -23,29 +23,27 @@ namespace PearlNecklace.Migrations
 
             modelBuilder.Entity("PearlNecklace.Necklace", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("necklaceID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("necklaceID"), 1L, 1);
 
-                    b.Property<int>("pearlbagID")
+                    b.Property<int>("price")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("pearlbagID");
+                    b.HasKey("necklaceID");
 
                     b.ToTable("Necklaces");
                 });
 
             modelBuilder.Entity("PearlNecklace.Pearl", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("pearlID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("pearlID"), 1L, 1);
 
                     b.Property<int>("Color")
                         .HasColumnType("int");
@@ -59,33 +57,9 @@ namespace PearlNecklace.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("pearlID");
 
                     b.ToTable("Pearls");
-                });
-
-            modelBuilder.Entity("PearlNecklace.Pearlbag", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Pearlbag");
-                });
-
-            modelBuilder.Entity("PearlNecklace.Necklace", b =>
-                {
-                    b.HasOne("PearlNecklace.Pearlbag", "pearlbag")
-                        .WithMany()
-                        .HasForeignKey("pearlbagID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("pearlbag");
                 });
 #pragma warning restore 612, 618
         }

@@ -21,15 +21,16 @@ namespace PearlNecklace
 {
     class Pearlbag
     {
-        public int ID { get; set; }
+        public int pearlbagID { get; set; }
 
-        public List<Pearl> _pearls = new List<Pearl>();
+        public virtual List<Pearl> _pearls { get; set; }
         public int numberOfPearls 
         { 
             get 
             { 
                 return _pearls.Count;
-            } 
+            }
+            set { }
         }
         public int Find(Pearl otherPearl)
         {
@@ -46,10 +47,16 @@ namespace PearlNecklace
 
         public Pearlbag()
         {
-            for (int i = 0; i < numberOfPearls; i++)
+            var rndList = new List<Pearl>();
+            var rnd = new Random();
+            int pearls = rnd.Next(10, 51);
+            for (int i = 0; i < pearls; i++)
             {
-                _pearls.Add(new Pearl());
+                Pearl pearl = Pearl.Factory.CreateRandomPearl();
+                rndList.Add(pearl);
+                
             }
+            _pearls = rndList;
         }
 
     }

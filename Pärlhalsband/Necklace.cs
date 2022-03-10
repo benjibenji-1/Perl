@@ -10,6 +10,7 @@ namespace PearlNecklace
     {
         public int necklaceID { get; set; }
         public Pearlbag pearlBag = new Pearlbag();
+
         public int price { 
             get
             {
@@ -17,10 +18,12 @@ namespace PearlNecklace
             }
             set { }
         }
+
         public void Sort()
         {
             pearlBag._pearls.Sort();
         }
+
         public override string ToString()
         {
             string returnString = "";
@@ -32,6 +35,7 @@ namespace PearlNecklace
             }
             return $"{returnString}\n Total price of necklace:{returnPrice} ";
         }
+
         public int Price()
         {
             int price = 0;
@@ -41,6 +45,7 @@ namespace PearlNecklace
             }
             return price;
         }
+
         public Necklace()
         {
         }

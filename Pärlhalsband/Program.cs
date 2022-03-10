@@ -14,37 +14,37 @@ Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensi
 void PopulateDatabase()
 {
 
-var neckklaceList = new List<Necklace>();
-foreach (var item in database.Necklaces)
-{
-    database.Necklaces.Remove(item);
-}
-foreach (var item in database.Pearls)
-{
-    database.Pearls.Remove(item);
-}
-for (int i = 0; i < 1000; i++)
-{
-    neckklaceList.Add(new Necklace());
-}
-
-neckklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
-foreach (var necklace in neckklaceList)
-{
-    int necklaceID = necklace.ID;
-    foreach (var pearl in necklace.pearlBag._pearls)
+    var neckklaceList = new List<Necklace>();
+    foreach (var item in database.Necklaces)
     {
-        pearl.necklaceID = necklaceID;
-        database.Pearls.Add(pearl);
+        database.Necklaces.Remove(item);
     }
+    foreach (var item in database.Pearls)
+    {
+        database.Pearls.Remove(item);
+    }
+    for (int i = 0; i < 1000; i++)
+    {
+        neckklaceList.Add(new Necklace());
+    }
+
+    neckklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
+    foreach (var necklace in neckklaceList)
+    {
+        int necklaceID = necklace.ID;
+        foreach (var pearl in necklace.pearlBag._pearls)
+        {
+            pearl.necklaceID = necklaceID;
+            database.Pearls.Add(pearl);
+        }
+    }
+
+
+    database.SaveChanges();
+
+
+    var p = Pearl.Factory.CreateRandomPearl();
+    Console.WriteLine("Create a couple of Random pearls");
+    Console.WriteLine(Pearl.Factory.CreateRandomPearl());
+    Console.WriteLine(Pearl.Factory.CreateRandomPearl());
 }
-
-
-database.SaveChanges();
-
-
-var p = Pearl.Factory.CreateRandomPearl();
-Console.WriteLine("Create a couple of Random pearls");
-Console.WriteLine(Pearl.Factory.CreateRandomPearl());
-Console.WriteLine(Pearl.Factory.CreateRandomPearl());
-

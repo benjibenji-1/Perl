@@ -5,13 +5,17 @@ using PearlNecklace;
 using var database = new AddDbContext();
 var necklaceTest = new Necklace();
 Console.WriteLine("Necklace full price:");
-Console.WriteLine($"{necklaceTest.price}");
+Console.WriteLine($"{necklaceTest.price} {necklaceTest.ID}");
 Console.WriteLine("Necklace full price end");
 
 var neckklaceList = new List<Necklace>();
-foreach (var movie in database.Necklaces)
+foreach (var item in database.Necklaces)
 {
-    database.Necklaces.Remove(movie);
+    database.Necklaces.Remove(item);
+}
+foreach (var item in database.Pearls)
+{
+    database.Pearls.Remove(item);
 }
 for (int i = 0; i < 1000; i++)
 {
@@ -19,6 +23,17 @@ for (int i = 0; i < 1000; i++)
 }
 
 neckklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
+foreach (var necklace in neckklaceList)
+{
+    int necklaceID = necklace.ID;
+    foreach (var pearl in necklace.pearlBag._pearls)
+    {
+        pearl.necklaceID = necklaceID;
+        database.Pearls.Add(pearl);
+    }
+}
+
+
 database.SaveChanges();
 
 

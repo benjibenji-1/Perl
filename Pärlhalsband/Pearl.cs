@@ -15,7 +15,8 @@ namespace PearlNecklace
 	{
 		//const int MinPearlSize = 5;
 		//const int MaxPearlSize = 25;
-		public int pearlID { get; set; }
+		public int ID { get; set; }
+		public int necklaceID { get; set; }
 		public int Size { get; set; }
 		public PearlColor Color { get; set; }
 		public PearlShape Shape { get; set; }
@@ -31,6 +32,10 @@ namespace PearlNecklace
 					return Size * 50;
 				}
 			}
+            set
+            {
+
+            }
 		}
 
 		public int CompareTo(Pearl other)

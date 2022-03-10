@@ -8,27 +8,41 @@ namespace PearlNecklace
 {
     class Necklace
     {
-        public int ID { get; set; }
-        public Pearlbag pearlbag { get; set; }
-
+        public int necklaceID { get; set; }
+        public Pearlbag pearlBag = new Pearlbag();
+        public int price { 
+            get
+            {
+                return Price();
+            }
+            set { }
+        }
         public void Sort()
         {
-            pearlbag._pearls.Sort();
+            pearlBag._pearls.Sort();
         }
         public override string ToString()
         {
             string returnString = "";
             int returnPrice = 0;
-            foreach (var item in this.pearlbag._pearls)
+            foreach (var item in this.pearlBag._pearls)
             {
                 returnString += $"{item} ";
                 returnPrice += item.Price;
             }
             return $"{returnString}\n Total price of necklace:{returnPrice} ";
         }
+        public int Price()
+        {
+            int price = 0;
+            foreach (var pearl in pearlBag._pearls)
+            {
+                price += pearl.Price;
+            }
+            return price;
+        }
         public Necklace()
         {
-            this.pearlbag._pearls.Sort();
         }
     }
 }

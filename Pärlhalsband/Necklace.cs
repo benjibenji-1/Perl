@@ -6,26 +6,28 @@ using System.Threading.Tasks;
 
 namespace PearlNecklace
 {
-    class Necklace : Pearlbag
+    class Necklace
     {
+        public Pearlbag pearlbag { get; set; }
+
         public void Sort()
         {
-            _pearls.Sort();
+            pearlbag._pearls.Sort();
         }
         public override string ToString()
         {
             string returnString = "";
             int returnPrice = 0;
-            foreach (var item in this._pearls)
+            foreach (var item in this.pearlbag._pearls)
             {
                 returnString += $"{item} ";
                 returnPrice += item.Price;
             }
             return $"{returnString}\n Total price of necklace:{returnPrice} ";
         }
-        public Necklace(int numberOfPearls) : base(numberOfPearls)
+        public Necklace()
         {
-            Sort();
+            this.pearlbag._pearls.Sort();
         }
     }
 }

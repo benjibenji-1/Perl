@@ -3,14 +3,10 @@ using PearlNecklace;
 using var database = new AddDbContext();
 
 //PopulateDatabase();
+//MostExpensiveNecklace();
 
 
-
-var mostExpensiveNecklace = (from necklace in database.Necklaces
-          orderby necklace.price descending
-          select new { necklace.ID, necklace.price }).FirstOrDefault();
-Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensiveNecklace.price}");
-
+//Populate database function
 void PopulateDatabase()
 {
 
@@ -47,4 +43,11 @@ void PopulateDatabase()
     Console.WriteLine("Create a couple of Random pearls");
     Console.WriteLine(Pearl.Factory.CreateRandomPearl());
     Console.WriteLine(Pearl.Factory.CreateRandomPearl());
+}
+void MostExpensiveNecklace()
+{
+    var mostExpensiveNecklace = (from necklace in database.Necklaces
+                                 orderby necklace.price descending
+                                 select new { necklace.ID, necklace.price }).FirstOrDefault();
+    Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensiveNecklace.price}");
 }

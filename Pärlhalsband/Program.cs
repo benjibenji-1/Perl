@@ -10,7 +10,7 @@ using var database = new AddDbContext();
 void PopulateDatabase()
 {
 
-    var neckklaceList = new List<Necklace>();
+    var necklaceList = new List<Necklace>();
     foreach (var item in database.Necklaces)
     {
         database.Necklaces.Remove(item);
@@ -21,11 +21,11 @@ void PopulateDatabase()
     }
     for (int i = 0; i < 1000; i++)
     {
-        neckklaceList.Add(new Necklace());
+        necklaceList.Add(new Necklace());
     }
 
-    neckklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
-    foreach (var necklace in neckklaceList)
+    necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
+    foreach (var necklace in necklaceList)
     {
         int necklaceID = necklace.ID;
         foreach (var pearl in necklace.pearlBag._pearls)

@@ -4,6 +4,8 @@ using var database = new AddDbContext();
 
 //PopulateDatabase();
 //MostExpensiveNecklace();
+var necklaceTest = new Necklace();
+Console.WriteLine($"{necklaceTest}");
 
 
 //Populate database function

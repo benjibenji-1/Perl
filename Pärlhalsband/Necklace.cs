@@ -26,14 +26,20 @@ namespace PearlNecklace
 
         public override string ToString()
         {
-            string returnString = "";
             int returnPrice = 0;
+            int NumberOfPearls = this.pearlBag._pearls.Count;
             foreach (var item in this.pearlBag._pearls)
             {
-                returnString += $"{item} ";
                 returnPrice += item.Price;
             }
-            return $"{returnString}\n Total price of necklace:{returnPrice} ";
+            return $"Necklace {this.ID}: {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
+        }
+        public void ShowPearls()
+        {
+            foreach (var item in this.pearlBag._pearls)
+            {
+                Console.WriteLine($"{item}");
+            }
         }
 
         public int Price()

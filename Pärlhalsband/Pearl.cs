@@ -11,7 +11,7 @@ namespace PearlNecklace
 	public enum PearlColor { Black, White, Pink }
 	public enum PearlShape { Round, Tear }
 	public enum PearlType { Freshwater, Saltwater }
-	internal class Pearl
+	public class Pearl
 	{
 		//const int MinPearlSize = 5;
 		//const int MaxPearlSize = 25;

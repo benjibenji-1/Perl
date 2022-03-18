@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PearlNecklace
 {
-    class Necklace
+    public class Necklace
     {
         public int ID { get; set; }
 
@@ -18,12 +18,10 @@ namespace PearlNecklace
             }
             set { }
         }
-
         public void Sort()
         {
             pearlBag._pearls.Sort();
         }
-
         public override string ToString()
         {
             int returnPrice = 0;
@@ -41,7 +39,6 @@ namespace PearlNecklace
                 Console.WriteLine($"{item}");
             }
         }
-
         public int Price()
         {
             int price = 0;
@@ -51,7 +48,6 @@ namespace PearlNecklace
             }
             return price;
         }
-
         public Necklace()
         {
         }

@@ -10,7 +10,7 @@ using PearlNecklace;
 
 namespace PearlNecklace.Migrations
 {
-    [DbContext(typeof(AddDbContext))]
+    [DbContext(typeof(NecklaceDb))]
     [Migration("20220310135845_test1")]
     partial class test1
     {

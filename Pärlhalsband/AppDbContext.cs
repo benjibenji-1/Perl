@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PearlNecklace
 {
-    internal class AddDbContext : DbContext
+    public class NecklaceDb : DbContext
     {
         public DbSet<Pearl> Pearls { get; set; }
         public DbSet<Necklace> Necklaces { get; set; }

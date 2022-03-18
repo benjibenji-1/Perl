@@ -19,10 +19,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace PearlNecklace
 {
-    class Pearlbag
+    public class Pearlbag
     {
         public int ID { get; set; }
-
         public virtual List<Pearl> _pearls { get; set; }
         public int numberOfPearls 
         { 
@@ -57,7 +56,6 @@ namespace PearlNecklace
                 {
                     Pearl pearl = Pearl.Factory.CreateRandomPearl();
                     rndList.Add(pearl);
-
                 }
                 returnBag._pearls = rndList;
                 return returnBag;
@@ -66,6 +64,5 @@ namespace PearlNecklace
         public Pearlbag()
         {
         }
-
     }
 }

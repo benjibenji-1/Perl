@@ -9,7 +9,7 @@ using PearlNecklace;
 
 namespace PearlNecklace.Migrations
 {
-    [DbContext(typeof(AddDbContext))]
+    [DbContext(typeof(NecklaceDb))]
     partial class AddDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

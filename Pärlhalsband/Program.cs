@@ -1,11 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using PearlNecklace;
-using var database = new AddDbContext();
+using var database = new NecklaceDb();
 
 //PopulateDatabase();
-//MostExpensiveNecklace();
-var necklaceTest = new Necklace();
-Console.WriteLine($"{necklaceTest}");
+MostExpensiveNecklace();
 
 
 //Populate database function

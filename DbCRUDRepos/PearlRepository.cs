@@ -13,33 +13,49 @@ namespace DbCRUDRepos
 
         public async Task<Pearl> CreateAsync(Pearl pearl) //Create? Add?
         {
-            var added = await _db.Pearls.AddAsync(pearl); //Adds to database or creates?
+            var added = await _db.Pearls.AddAsync(pearl); //Adds to database or creates? Unused?
 
-            int affected = await _db.SaveChangesAsync();
+            int affected = await _db.SaveChangesAsync(); //?
             if (affected == 1)
                 return pearl;
             else
                 return null;
         }
 
-        public Task<Pearl> DeleteAsync(int pearlId)
+        public async Task<Pearl> DeleteAsync(int pearlId)
         {
-            throw new NotImplementedException();
+            var pearlDel = await _db.Pearls.FindAsync(pearlId); //Probably wrong
+            _db.Pearls.Remove(pearlDel);
+
+            int affected = await _db.SaveChangesAsync();
+            if (affected == 1)
+                return pearlDel;
+            else
+                return null;
         }
 
-        public Task<IEnumerable<Pearl>> ReadAllAsync()
+        public async Task<IEnumerable<Pearl>> ReadAllAsync()
         {
-            throw new NotImplementedException();
+            return await Task.Run(() => _db.Pearls); //?
         }
 
-        public Task<Pearl> ReadAsync(int pearlId)
+        public async Task<Pearl> ReadAsync(int pearlId)
         {
-            throw new NotImplementedException();
+            return await _db.Pearls.FindAsync(pearlId); //Probably wrong
         }
 
-        public Task<Pearl> UpdateAsync(Pearl pearl)
+        public async Task<Pearl> UpdateAsync(Pearl pearl)
         {
-            throw new NotImplementedException();
+            _db.Pearls.Update(pearl);
+            int affected = await _db.SaveChangesAsync();
+            if (affected == 1)
+                return pearl;
+            else
+                return null;
+        }
+        public PearlRepository(NecklaceDb db) //Constructor
+        {
+            _db = db;
         }
     }
 }

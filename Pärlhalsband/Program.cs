@@ -1,10 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
 using PearlNecklace;
 using var database = new NecklaceDb();
 
 //PopulateDatabase();
 MostExpensiveNecklace();
-
 
 //Populate database function
 void PopulateDatabase()

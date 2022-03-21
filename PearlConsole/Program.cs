@@ -42,5 +42,11 @@ namespace PearlConsole
             Console.ReadKey();
             */
         }
+        private static bool BuildOptions()
+        {
+            _optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PearlNecklaceDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            return true;
+
+        }
     }
 }

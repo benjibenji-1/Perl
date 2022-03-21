@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿// See https://aka.ms/new-console-template for more information
 using PearlNecklace;
 using var database = new NecklaceDb();
 
@@ -17,7 +16,6 @@ static async Task QueryDatabaseCRUD()
 
 //PopulateDatabase();
 MostExpensiveNecklace();
-
 
 //Populate database function
 void PopulateDatabase()
@@ -56,7 +54,6 @@ void PopulateDatabase()
     Console.WriteLine("Create a couple of Random pearls");
     Console.WriteLine(Pearl.Factory.CreateRandomPearl());
     Console.WriteLine(Pearl.Factory.CreateRandomPearl());
-
 }
 void MostExpensiveNecklace()
 {
@@ -65,4 +62,3 @@ void MostExpensiveNecklace()
                                  select new { necklace.ID, necklace.price }).FirstOrDefault();
     Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensiveNecklace.price}");
 }
-

@@ -22,7 +22,7 @@ namespace PearlConsole
     class Program
     {
         private static DbContextOptionsBuilder<NecklaceDb> _optionsBuilder;
-        static void Main(string[] args)
+        static void Main()
         {
             if (!BuildOptions())
                 return; //Terminate if not build correctly

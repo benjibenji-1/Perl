@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
 using DbCRUDRepos;
-using PearlNecklace; //Project Reference != Project Dependencies
+using PearlNecklace; //Project Reference != Project Dependencies up
 
 
 namespace PearlConsole

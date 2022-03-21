@@ -1,6 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+using Microsoft.EntityFrameworkCore;
 using PearlNecklace;
 using var database = new NecklaceDb();
+
+private static DbContextOptionsBuilder<NecklaceDb> _optionsBuilder;
+
+static async Task QueryDatabaseCRUD()
+{
+
+    using (var db = new NecklaceDb(_options.Options))
+    { 
+
+    }
+}
+
 
 //PopulateDatabase();
 MostExpensiveNecklace();
@@ -43,6 +56,7 @@ void PopulateDatabase()
     Console.WriteLine("Create a couple of Random pearls");
     Console.WriteLine(Pearl.Factory.CreateRandomPearl());
     Console.WriteLine(Pearl.Factory.CreateRandomPearl());
+
 }
 void MostExpensiveNecklace()
 {
@@ -51,3 +65,4 @@ void MostExpensiveNecklace()
                                  select new { necklace.ID, necklace.price }).FirstOrDefault();
     Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensiveNecklace.price}");
 }
+

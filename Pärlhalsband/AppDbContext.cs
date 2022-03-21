@@ -13,6 +13,8 @@ namespace PearlNecklace
     {
         public DbSet<Pearl> Pearls { get; set; }
         public DbSet<Necklace> Necklaces { get; set; }
+        public NecklaceDb  () { }
+        public NecklaceDb(DbContextOptions options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DbCRUDRepos
 {
-	internal class NecklaceRepository : INecklaceRepository
+	public class NecklaceRepository : INecklaceRepository
 	{
 		NecklaceDb _db = null;
 
@@ -22,7 +22,7 @@ namespace DbCRUDRepos
 				return null;
 		}
 
-		public async Task<Necklace> DeleteAsync(Guid necklaceId)
+		public async Task<Necklace> DeleteAsync(int necklaceId)
 		{
 			var neckDel = await _db.Necklaces.FindAsync(necklaceId);
 			_db.Necklaces.Remove(neckDel);
@@ -34,7 +34,7 @@ namespace DbCRUDRepos
 				return null;
 		}
 
-		public async Task<Necklace> ReadAsync(Guid neckId)
+		public async Task<Necklace> ReadAsync(int neckId)
 		{
 			return await _db.Necklaces.FindAsync(neckId);
 		}

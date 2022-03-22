@@ -11,8 +11,8 @@ namespace DbCRUDRepos
 	{
 		Task<Necklace> CreateAsync(Necklace neck);
 		Task<IEnumerable<Necklace>> ReadAllAsync();
-		Task<Necklace> ReadAsync(Guid necklaceId);
+		Task<Necklace> ReadAsync(int necklaceId);
 		Task<Necklace> UpdateAsync(Necklace neck);
-		Task<Necklace> DeleteAsync(Guid necklaceId);
+		Task<Necklace> DeleteAsync(int necklaceId);
 	}
 }

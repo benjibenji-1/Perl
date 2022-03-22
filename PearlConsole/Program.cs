@@ -51,8 +51,33 @@ namespace PearlConsole
 
         private static void SeedDataBase()
 		{
-            throw new NotImplementedException();
-		}
+            using var database = new NecklaceDb();
+            var necklaceList = new List<Necklace>();
+            foreach (var item in database.Necklaces)
+            {
+                database.Necklaces.Remove(item);
+            }
+            foreach (var item in database.Pearls)
+            {
+                database.Pearls.Remove(item);
+            }
+            for (int i = 0; i < 1000; i++)
+            {
+                necklaceList.Add(new Necklace());
+            }
+
+            necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
+            foreach (var necklace in necklaceList)
+            {
+                int necklaceID = necklace.ID;
+                foreach (var pearl in necklace.pearlBag._pearls)
+                {
+                    pearl.necklaceID = necklaceID;
+                    database.Pearls.Add(pearl);
+                }
+            }
+            database.SaveChanges();
+        }
 
         private static async Task QueryDatabaseAsync()
 		{

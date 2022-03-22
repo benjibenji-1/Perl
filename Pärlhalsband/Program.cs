@@ -55,3 +55,4 @@ void MostExpensiveNecklace()
                                  select new { necklace.ID, necklace.price }).FirstOrDefault();
     Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensiveNecklace.price}");
 }
+

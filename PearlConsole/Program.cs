@@ -31,19 +31,20 @@ namespace PearlConsole
             //add-migration initial-migration
             //update-database
 
-            /*
-            SeedDataBase();
-            QueryDatabaseAsync().Wait();
+            
+            //SeedDataBase();
+            //QueryDatabaseAsync().Wait();
             QueryDatabase_Linq();
             QueryDatabase_DataModel_Linq();
             QueryDatabaseCRUDE().Wait();
 
             Console.WriteLine("\nPress any key to terminate");
             Console.ReadKey();
-            */
+            
         }
         private static bool BuildOptions()
         {
+            _optionsBuilder = new DbContextOptionsBuilder<NecklaceDb>();
             _optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PearlNecklaceDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             return true;
 
@@ -132,7 +133,7 @@ namespace PearlConsole
                 //var pearls = db.Pearls.AsEnumerable().ToList(); ---Not being used, price can be found already in necklace
 
                 var NecklaceMostExpensive = necklaces.OrderByDescending(c => c.price).First();
-                Console.WriteLine($"Necklace with highest price:\n {NecklaceMostExpensive}, Price: {NecklaceMostExpensive.price:C2}");
+                Console.WriteLine($"Necklace with highest price:\n {NecklaceMostExpensive}"); //, Price: {NecklaceMostExpensive.price:C2}
             }
         }
 

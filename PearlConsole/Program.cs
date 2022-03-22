@@ -48,5 +48,30 @@ namespace PearlConsole
             return true;
 
         }
+
+        private static void SeedDataBase()
+		{
+            throw new NotImplementedException();
+		}
+
+        private static async Task QueryDatabaseAsync()
+		{
+            throw new NotImplementedException();
+		}
+
+        private static void QueryDatabase_Linq()
+		{
+            throw new NotImplementedException();
+		}
+
+        private static void QueryDatabase_DataModel_Linq()
+		{
+            throw new NotImplementedException();
+		}
+
+        private static async Task QueryDatabaseCRUDE()
+		{
+            throw new NotImplementedException();
+        }
     }
 }

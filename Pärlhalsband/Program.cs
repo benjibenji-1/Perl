@@ -71,8 +71,6 @@ void PopulateDatabase()
             database.Pearls.Add(pearl);
         }
     }
-
-
     database.SaveChanges();
 
 

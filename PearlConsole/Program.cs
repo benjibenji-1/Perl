@@ -33,7 +33,7 @@ namespace PearlConsole
 
             
             //SeedDataBase();
-            //QueryDatabaseAsync().Wait();
+            QueryDatabaseAsync().Wait();
             QueryDatabase_Linq();
             QueryDatabase_DataModel_Linq();
             QueryDatabaseCRUDE().Wait();
@@ -97,8 +97,19 @@ namespace PearlConsole
 
         private static async Task QueryDatabaseAsync()
 		{
-            throw new NotImplementedException();
-		}
+            Console.WriteLine("\n\nQuery Database");
+            Console.WriteLine("--------------");
+            using (var db = new NecklaceDb(_optionsBuilder.Options))
+            {
+                var necklCount = await db.Necklaces.CountAsync();
+                var pearlCount = await db.Pearls.CountAsync();
+
+                Console.WriteLine($"Nr of Customers: {necklCount}");
+                Console.WriteLine($"Nr of Orders: {pearlCount}");
+
+                var n = db.Necklaces.AsEnumerable();
+            }
+        }
 
         private static void QueryDatabase_Linq()
 		{

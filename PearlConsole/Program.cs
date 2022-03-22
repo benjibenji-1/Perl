@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using DbCRUDRepos;
 using PearlNecklace; //Project Reference != Project Dependencies up
-
+using DbContextLib;
 
 namespace PearlConsole
 {
@@ -44,9 +44,24 @@ namespace PearlConsole
         }
         private static bool BuildOptions()
         {
-            _optionsBuilder = new DbContextOptionsBuilder<NecklaceDb>();
             _optionsBuilder = new DbContextOptionsBuilder<NecklaceDb>(); //What is this
-            _optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PearlNecklaceDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //_optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PearlNecklaceDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //return true;
+
+            #region Ensuring appsettings.json is in the right location
+            Console.WriteLine($"DbConnections Directory: {DBConnection.DbConnectionsDirectory}");
+
+            var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLServer_necklaceDB");
+            if (!string.IsNullOrEmpty(connectionString))
+                Console.WriteLine($"Connection string to Database: {connectionString}");
+            else
+            {
+                Console.WriteLine($"Please copy the 'DbConnections.json' to this location");
+                return false;
+            }
+            #endregion
+
+            _optionsBuilder.UseSqlServer(connectionString);
             return true;
         }
 

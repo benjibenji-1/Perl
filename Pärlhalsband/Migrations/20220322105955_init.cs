@@ -4,7 +4,7 @@
 
 namespace PearlNecklace.Migrations
 {
-    public partial class test1 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

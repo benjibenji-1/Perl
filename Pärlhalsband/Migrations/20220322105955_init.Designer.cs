@@ -11,14 +11,14 @@ using PearlNecklace;
 namespace PearlNecklace.Migrations
 {
     [DbContext(typeof(NecklaceDb))]
-    [Migration("20220310135845_test1")]
-    partial class test1
+    [Migration("20220322105955_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);

@@ -22,7 +22,7 @@ namespace PearlConsole
     class Program
     {
         private static DbContextOptionsBuilder<NecklaceDb> _optionsBuilder;
-        static void Main(string[] args)
+        static void Main()
         {
             if (!BuildOptions())
                 return; //Terminate if not build correctly
@@ -41,6 +41,12 @@ namespace PearlConsole
             Console.WriteLine("\nPress any key to terminate");
             Console.ReadKey();
             */
+        }
+        private static bool BuildOptions()
+        {
+            _optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PearlNecklaceDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            return true;
+
         }
     }
 }

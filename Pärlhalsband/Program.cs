@@ -1,4 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+
+//Wrong Program.cs
+
+
 using PearlNecklace;
 using var database = new NecklaceDb();
 
@@ -15,7 +20,7 @@ static async Task QueryDatabaseCRUD()
 
 
 //PopulateDatabase();
-MostExpensiveNecklace();
+//MostExpensiveNecklace();
 
 //Populate database function
 void PopulateDatabase()

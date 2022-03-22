@@ -11,11 +11,11 @@ namespace DbCRUDRepos
     {
         NecklaceDb _db = null;
 
-        public async Task<Pearl> CreateAsync(Pearl pearl) //Create? Add?
+        public async Task<Pearl> CreateAsync(Pearl pearl)
         {
-            var added = await _db.Pearls.AddAsync(pearl); //Adds to database or creates? Unused?
+            var added = await _db.Pearls.AddAsync(pearl);
 
-            int affected = await _db.SaveChangesAsync(); //?
+            int affected = await _db.SaveChangesAsync();
             if (affected == 1)
                 return pearl;
             else
@@ -24,7 +24,7 @@ namespace DbCRUDRepos
 
         public async Task<Pearl> DeleteAsync(int pearlId)
         {
-            var pearlDel = await _db.Pearls.FindAsync(pearlId); //Probably wrong
+            var pearlDel = await _db.Pearls.FindAsync(pearlId);
             _db.Pearls.Remove(pearlDel);
 
             int affected = await _db.SaveChangesAsync();
@@ -36,12 +36,12 @@ namespace DbCRUDRepos
 
         public async Task<IEnumerable<Pearl>> ReadAllAsync()
         {
-            return await Task.Run(() => _db.Pearls); //?
+            return await Task.Run(() => _db.Pearls);
         }
 
         public async Task<Pearl> ReadAsync(int pearlId)
         {
-            return await _db.Pearls.FindAsync(pearlId); //Probably wrong
+            return await _db.Pearls.FindAsync(pearlId);
         }
 
         public async Task<Pearl> UpdateAsync(Pearl pearl)

@@ -32,7 +32,7 @@ namespace PearlConsole
             //update-database
 
             
-            SeedDataBase();
+            //SeedDataBase();
             QueryDatabaseAsync().Wait();
             QueryDatabase_Linq();
             QueryDatabase_DataModel_Linq();

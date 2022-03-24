@@ -36,22 +36,26 @@ namespace DbCRUDRepos
 
 		public async Task<Necklace> ReadAsync(int neckId)
 		{
-			return await _db.Necklaces.FindAsync(neckId);
+			var necklace = await _db.Necklaces.FindAsync(neckId);
+			var pearls = _db.Pearls.ToList();           //Needed if I want EFC to load the embedded pearls
+			return necklace;
 		}
 
 		public async Task<IEnumerable<Necklace>> ReadAllAsync()
 		{
-			return await Task.Run(() => _db.Necklaces);
+			return await Task.Run(() =>
+            {
+				var necklaces = _db.Necklaces.ToList();
+				var pearls = _db.Pearls.ToList();
+				return necklaces;
+            });
 		}
 
 		public async Task<Necklace> UpdateAsync(Necklace neck)
 		{
-			_db.Necklaces.Update(neck);
-			int	affected = await _db.SaveChangesAsync();
-			if (affected == 1)
-				return neck;
-			else
-				return null;
+			_db.Necklaces.Update(neck); //No db interaction until SaveChangesAsync
+			await _db.SaveChangesAsync();
+			return neck;
 		}
 
 		public NecklaceRepository(NecklaceDb db)

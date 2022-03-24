@@ -10,7 +10,7 @@ namespace PearlNecklace
     {
         public int ID { get; set; }
 
-        public List<Pearl> _pearls { get; set; }
+        public virtual List<Pearl> _pearls { get; set; } = new List<Pearl>();
 
         public int price { 
             get
@@ -43,9 +43,16 @@ namespace PearlNecklace
         public int Price()
         {
             int price = 0;
-            foreach (var pearl in this._pearls)
+            if (_pearls == null)
             {
-                price += pearl.Price;
+                return 0;
+            }
+            else
+            {
+                foreach (var pearl in this._pearls)
+                {
+                    price += pearl.Price;
+                }
             }
             return price;
         }
@@ -68,7 +75,6 @@ namespace PearlNecklace
         }
         public Necklace()
         {
-           
         }
     }
 }

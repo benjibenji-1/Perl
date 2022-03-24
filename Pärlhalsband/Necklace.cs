@@ -10,7 +10,7 @@ namespace PearlNecklace
     {
         public int ID { get; set; }
 
-        public Pearlbag pearlBag = Pearlbag.Factory.CreateRandomPearlbag();
+        public List<Pearl> _pearls { get; set; }
         public int price { 
             get
             {
@@ -20,13 +20,13 @@ namespace PearlNecklace
         }
         public void Sort()
         {
-            pearlBag._pearls.Sort();
+            _pearls.Sort();
         }
         public override string ToString()
         {
             int returnPrice = 0;
-            int NumberOfPearls = this.pearlBag._pearls.Count;
-            foreach (var item in this.pearlBag._pearls)
+            int NumberOfPearls = this._pearls.Count;
+            foreach (var item in this._pearls)
             {
                 returnPrice += item.Price;
             }
@@ -34,7 +34,7 @@ namespace PearlNecklace
         }
         public void ShowPearls()
         {
-            foreach (var item in this.pearlBag._pearls)
+            foreach (var item in this._pearls)
             {
                 Console.WriteLine($"{item}");
             }
@@ -42,7 +42,7 @@ namespace PearlNecklace
         public int Price()
         {
             int price = 0;
-            foreach (var pearl in pearlBag._pearls)
+            foreach (var pearl in _pearls)
             {
                 price += pearl.Price;
             }

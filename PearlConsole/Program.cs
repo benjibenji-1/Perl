@@ -78,7 +78,7 @@ namespace PearlConsole
             }
             for (int i = 0; i < 1000; i++)
             {
-                necklaceList.Add(Necklace.Factory.CreateRandom(rnd.Next(5,50)));
+                necklaceList.Add(Necklace.Factory.CreateRandom());
             }
 
             necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));

@@ -16,7 +16,7 @@ namespace DbCRUDRepos
 			var added = await _db.Necklaces.AddAsync(neck);
 
 			int affected = await _db.SaveChangesAsync();
-			if (affected == 1)
+			if (affected == (neck._pearls.Count + 1))
 				return neck;
 			else
 				return null;
@@ -28,7 +28,7 @@ namespace DbCRUDRepos
 			_db.Necklaces.Remove(neckDel);
 
 			int affected = await _db.SaveChangesAsync();
-			if (affected == 1)
+			if (affected == (neckDel._pearls.Count + 1))
 				return neckDel;
 			else
 				return null;

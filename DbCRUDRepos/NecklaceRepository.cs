@@ -43,7 +43,11 @@ namespace DbCRUDRepos
 
 		public async Task<IEnumerable<Necklace>> ReadAllAsyncWithPearls()
 		{
-			return await Task.Run(() =>{ _db.Pearls.ToList(); return _db.Necklaces.ToList(); });
+			return await Task.Run(() =>
+			{ 
+				_db.Pearls.ToList(); //Gotta love EFC
+				return _db.Necklaces.ToList(); 
+			});
 		}
 
 		public async Task<Necklace> ReadAsync(int neckId)

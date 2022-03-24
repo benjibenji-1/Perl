@@ -32,11 +32,12 @@ namespace PearlConsole
             //update-database
 
             
-            SeedDataBase();
+            //SeedDataBase();
             QueryDatabaseAsync().Wait();
             QueryDatabase_Linq();
             QueryDatabase_DataModel_Linq();
-            QueryDatabaseCRUDE().Wait();
+            QueryDatabasePearlCRUDE().Wait();
+            QueryDatabaseNecklaceCRUDE().Wait();
 
             Console.WriteLine("\nPress any key to terminate");
             Console.ReadKey();
@@ -162,7 +163,54 @@ namespace PearlConsole
             }
         }
 
-        private static async Task QueryDatabaseCRUDE()
+        private static async Task QueryDatabasePearlCRUDE()
+        {
+            Console.WriteLine("\n\nQuery Database Pearl CRUDE");
+            Console.WriteLine("--------------------");
+            using (var db = new NecklaceDb(_optionsBuilder.Options))
+            {
+                var _repo = new PearlRepository(db);
+        
+                Console.WriteLine("Testing ReadAllAsync()");
+                var allPearls = await _repo.ReadAllAsync();
+                Console.WriteLine($"Nr of Pearls {allPearls.Count()}");
+                Console.WriteLine($"\nFirst 5 pearls");
+                allPearls.Take(5).Print();
+        
+        
+                Console.WriteLine("\nTesting ReadAsync()");
+                var lastPearl = allPearls.Last();
+                var lastPearl2 = await _repo.ReadAsync(lastPearl.ID);
+                Console.WriteLine($"Last Pearl.\n{lastPearl}");
+                Console.WriteLine($"Read Pearl with PearlID == Last Pearl\n{lastPearl2}");
+                if (lastPearl == lastPearl2)
+                    Console.WriteLine("Pearls Equal");
+                else
+                    Console.WriteLine("ERROR: Pearls not equal");
+        
+        
+                Console.WriteLine("\nTesting UpdateAsync()");
+                var (c, t) = (lastPearl2.Color, lastPearl2.Type);
+        
+                //Change properties
+                (lastPearl2.Color, lastPearl2.Type) = (PearlColor.White, PearlType.Freshwater);
+                var lastPearl3 = await _repo.UpdateAsync(lastPearl2);
+                Console.WriteLine($"Last Pearl with updated properties.\n{lastPearl2}");
+        
+                if ((lastPearl2.Color == lastPearl3.Color) && (lastPearl2.Type == lastPearl3.Type))
+                {
+                    Console.WriteLine("Pearl Updated");
+                    (lastPearl3.Color, lastPearl3.Type) = (c, t);
+        
+                    lastPearl3 = await _repo.UpdateAsync(lastPearl3);
+                    Console.WriteLine($"Last Pearl with restored properties.\n{lastPearl3}");
+                }
+                else
+                    Console.WriteLine("ERROR: Pearl not updated");
+            }
+        }
+
+        private static async Task QueryDatabaseNecklaceCRUDE()
 		{
             Console.WriteLine("\n\nQuery Database CRUDE");
             Console.WriteLine("--------------------");
@@ -173,6 +221,10 @@ namespace PearlConsole
                 Console.WriteLine("Testing ReadAllAsync()");
                 var AllNecklaces = await _repo.ReadAllAsync();
                 Console.WriteLine($"Nr of Necklaces {AllNecklaces.Count()}");
+
+                Console.WriteLine("\nTesting ReadAllAsyncWithPearls()");
+                var AllNecklacesWithPearls = await _repo.ReadAllAsyncWithPearls();
+                Console.WriteLine($"Nr of Necklaces {AllNecklacesWithPearls.Count()}");
                 Console.WriteLine($"\nFirst 5 Necklaces");
                 AllNecklaces.Take(5).Print();
 
@@ -186,26 +238,6 @@ namespace PearlConsole
                     Console.WriteLine("Necklaces Equal");
                 else
                     Console.WriteLine("ERROR: Necklaces not equal");
-
-                // What to update?
-                /*
-                Console.WriteLine("\nTesting UpdateAsync()");
-                LastNecklace2.price += "_Updated";
-
-                var LastCust3 = await _repo.UpdateAsync(LastNecklace2);
-                Console.WriteLine($"Last Customer with updated names.\n{LastNecklace2}");
-
-                if ((LastNecklace2.price == LastCust3.price))
-                {
-                    Console.WriteLine("Customer Updated");
-                    LastCust3.price = LastCust3.price.Replace("_Updated");
-
-                    LastCust3 = await _repo.UpdateAsync(LastCust3);
-                    Console.WriteLine($"Last Customer with restored names.\n{LastCust3}");
-                }
-                else
-                    Console.WriteLine("ERROR: Customer not updated");
-                */
 
 
                 Console.WriteLine("\nTesting CreateAsync()");

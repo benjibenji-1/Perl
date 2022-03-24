@@ -66,13 +66,13 @@ namespace PearlNecklace
         }
         public static class Factory
         {
-            public static Necklace CreateRandom(int NrofItems)
+            public static Necklace CreateRandom()
             {
                 var returnN = new Necklace();
                 var rndList = new List<Pearl>();
                 var rnd = new Random();
                 int pearls = rnd.Next(10, 51);
-                for (int i = 0; i < NrofItems; i++)
+                for (int i = 0; i < pearls; i++)
                 {
                     Pearl pearl = Pearl.Factory.CreateRandomPearl();
                     rndList.Add(pearl);

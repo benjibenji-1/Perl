@@ -63,6 +63,16 @@ namespace PearlNecklace
 				p.RandomInit();
 				return p;
 			}
+
+			public static Pearl CreatePearl(int size, PearlColor color, PearlShape shape, PearlType type)
+			{
+				var pearl = new Pearl();
+				pearl.Size = size;
+				pearl.Color = color;
+				pearl.Shape = shape;
+				pearl.Type = type;
+				return pearl;
+			}
 		}
 
 		public override string ToString()

@@ -45,7 +45,7 @@ using var database = new NecklaceDb();
 //Populate database function
 void PopulateDatabase()
 {
-
+    /*
     var necklaceList = new List<Necklace>();
     foreach (var item in database.Necklaces)
     {
@@ -63,7 +63,7 @@ void PopulateDatabase()
     necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
     foreach (var necklace in necklaceList)
     {
-        int necklaceID = necklace.ID;
+        int necklaceID = necklace.NecklaceID;
         foreach (var pearl in necklace._pearls)
         {
             pearl.necklaceID = necklaceID;
@@ -82,7 +82,8 @@ void MostExpensiveNecklace()
 {
     var mostExpensiveNecklace = (from necklace in database.Necklaces
                                  orderby necklace.price descending
-                                 select new { necklace.ID, necklace.price }).FirstOrDefault();
-    Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.ID}, Price: {mostExpensiveNecklace.price}");
+                                 select new { necklace.NecklaceID, necklace.price }).FirstOrDefault();
+    Console.WriteLine($"Necklace Id: {mostExpensiveNecklace.NecklaceID}, Price: {mostExpensiveNecklace.price}");
+    */
 }
-
+    

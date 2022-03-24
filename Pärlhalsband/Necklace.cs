@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 
 namespace PearlNecklace
 {
     public class Necklace
     {
-        public int ID { get; set; }
+        [Key]
+        [Column("NecklaceID")]
+        public int NecklaceID { get; set; }
 
         public virtual List<Pearl> _pearls { get; set; } = new List<Pearl>();
+
+        public Pearl this[int idx] => _pearls [idx];
 
         public int price { 
             get
@@ -23,6 +30,7 @@ namespace PearlNecklace
         {
             _pearls.Sort();
         }
+
         public override string ToString()
         {
             int returnPrice = 0;
@@ -31,7 +39,7 @@ namespace PearlNecklace
             {
                 returnPrice += item.Price;
             }
-            return $"Necklace {this.ID}: {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
+            return $"Necklace {this.NecklaceID}: {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
         }
         public void ShowPearls()
         {
@@ -58,13 +66,13 @@ namespace PearlNecklace
         }
         public static class Factory
         {
-            public static Necklace CreateRandom()
+            public static Necklace CreateRandom(int NrofItems)
             {
                 var returnN = new Necklace();
                 var rndList = new List<Pearl>();
                 var rnd = new Random();
                 int pearls = rnd.Next(10, 51);
-                for (int i = 0; i < pearls; i++)
+                for (int i = 0; i < NrofItems; i++)
                 {
                     Pearl pearl = Pearl.Factory.CreateRandomPearl();
                     rndList.Add(pearl);

@@ -57,14 +57,14 @@ void PopulateDatabase()
     }
     for (int i = 0; i < 1000; i++)
     {
-        necklaceList.Add(new Necklace());
+        necklaceList.Add(Necklace.Factory.CreateRandom());
     }
 
     necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
     foreach (var necklace in necklaceList)
     {
         int necklaceID = necklace.ID;
-        foreach (var pearl in necklace.pearlBag._pearls)
+        foreach (var pearl in necklace._pearls)
         {
             pearl.necklaceID = necklaceID;
             database.Pearls.Add(pearl);

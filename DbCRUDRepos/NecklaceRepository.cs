@@ -16,10 +16,12 @@ namespace DbCRUDRepos
 			var added = await _db.Necklaces.AddAsync(neck);
 
 			int affected = await _db.SaveChangesAsync();
-			if (affected == (neck._pearls.Count() + 1))
-				return neck;
-			else
-				return null;
+			//await _db.SaveChangesAsync();
+			return neck;
+			//if (affected == (neck._pearls.Count() + 1))
+			//	return neck;
+			//else
+			//	return null;
 		}
 
 		public async Task<Necklace> DeleteAsync(int necklaceId)
@@ -34,20 +36,24 @@ namespace DbCRUDRepos
 				return null;
 		}
 
-		public async Task<Necklace> ReadAsync(int neckId)
-		{
-			return await _db.Necklaces.FindAsync(neckId);
-		}
-
 		public async Task<IEnumerable<Necklace>> ReadAllAsync()
 		{
-			return await Task.Run(() =>
-            {
-				var necklaces = _db.Necklaces.ToList();
-				var pearls = _db.Pearls.ToList();
-				return necklaces;
-            });
+			return await Task.Run(() => _db.Necklaces);
 		}
+
+		public async Task<IEnumerable<Necklace>> ReadAllAsyncWithPearls()
+		{
+			return await Task.Run(() =>{ _db.Pearls.ToList(); return _db.Necklaces.ToList(); });
+		}
+
+		public async Task<Necklace> ReadAsync(int neckId)
+		{
+			// return await _db.Necklaces.FindAsync(neckId);
+			var necklace = await _db.Necklaces.FindAsync(neckId);
+			var pearls = _db.Pearls.ToList();           //Needed if I want EFC to load the embedded pearls
+			return necklace;
+		}
+
 
 		public async Task<Necklace> UpdateAsync(Necklace neck)
 		{

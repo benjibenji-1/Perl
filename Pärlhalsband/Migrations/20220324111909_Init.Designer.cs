@@ -11,8 +11,8 @@ using PearlNecklace;
 namespace PearlNecklace.Migrations
 {
     [DbContext(typeof(NecklaceDb))]
-    [Migration("20220324101504_initial")]
-    partial class initial
+    [Migration("20220324111909_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,16 +25,17 @@ namespace PearlNecklace.Migrations
 
             modelBuilder.Entity("PearlNecklace.Necklace", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("NecklaceID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("NecklaceID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NecklaceID"), 1L, 1);
 
                     b.Property<int>("price")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("NecklaceID");
 
                     b.ToTable("Necklaces");
                 });

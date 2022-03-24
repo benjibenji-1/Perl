@@ -23,16 +23,17 @@ namespace PearlNecklace.Migrations
 
             modelBuilder.Entity("PearlNecklace.Necklace", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("NecklaceID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("NecklaceID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NecklaceID"), 1L, 1);
 
                     b.Property<int>("price")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("NecklaceID");
 
                     b.ToTable("Necklaces");
                 });

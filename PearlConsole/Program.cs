@@ -65,6 +65,7 @@ namespace PearlConsole
 
         private static void SeedDataBase()
 		{
+            var rnd = new Random();
             using var database = new NecklaceDb();
             var necklaceList = new List<Necklace>();
             foreach (var item in database.Necklaces)
@@ -77,13 +78,13 @@ namespace PearlConsole
             }
             for (int i = 0; i < 1000; i++)
             {
-                necklaceList.Add(Necklace.Factory.CreateRandom());
+                necklaceList.Add(Necklace.Factory.CreateRandom(rnd.Next(5,50)));
             }
 
             necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
             foreach (var necklace in necklaceList)
             {
-                int necklaceID = necklace.ID;
+                int necklaceID = necklace.NecklaceID;
                 foreach (var pearl in necklace._pearls)
                 {
                     pearl.necklaceID = necklaceID;
@@ -127,7 +128,7 @@ namespace PearlConsole
                 pearls.Take(5).OrderByDescending(pearl => pearl.Price).Print();
 
                 Console.WriteLine("Join examples");
-                var list1 = necklaces.GroupJoin(necklaces, neck => neck.ID, pearl => pearl.ID, (neck, pearl) => new { neck, pearl });
+                var list1 = necklaces.GroupJoin(necklaces, neck => neck.NecklaceID, pearl => pearl.NecklaceID, (neck, pearl) => new { neck, pearl });
                 Console.WriteLine($"\nOuterJoin: Necklace - Pearl via GroupJoin by Necklace, Count: {list1.Count()}");
                 //list1.Print();
 
@@ -139,7 +140,7 @@ namespace PearlConsole
                 Console.WriteLine($"\nGroupJoin with Pearl list Count != 0: {list3.Count()}");
                 //list3.Print();
 
-                var list4 = necklaces.Join(pearls, neck => neck.ID, pearl => pearl.ID, (neck, pearl) => new { neck, pearl });
+                var list4 = necklaces.Join(pearls, neck => neck.NecklaceID, pearl => pearl.ID, (neck, pearl) => new { neck, pearl });
                 Console.WriteLine($"\nInnerJoin Necklace - Pearl via Join, Count: {list4.Count()}");
                 //list4.Print();            
             }
@@ -178,7 +179,7 @@ namespace PearlConsole
 
                 Console.WriteLine("\nTesting ReadAsync()");
                 var LastNecklace1 = AllNecklaces.Last();
-                var LastNecklace2 = await _repo.ReadAsync(LastNecklace1.ID);
+                var LastNecklace2 = await _repo.ReadAsync(LastNecklace1.NecklaceID);
                 Console.WriteLine($"Last Necklace with pearls.\n{LastNecklace1}");
                 Console.WriteLine($"Read Necklace with NecklaceId == Last Necklace\n{LastNecklace2}");
                 if (LastNecklace1 == LastNecklace2)
@@ -208,31 +209,29 @@ namespace PearlConsole
 
 
                 Console.WriteLine("\nTesting CreateAsync()");
-                var NewNecklace1 = Necklace.Factory.CreateRandom();
-                var NewNecklace2 = await _repo.CreateAsync(NewNecklace1);
-                var NewNecklace3 = await _repo.ReadAsync(NewNecklace2.ID);
+                var NewNecklace2 = await _repo.CreateAsync(Necklace.Factory.CreateRandom(25));
+                var NewNecklace3 = await _repo.ReadAsync(NewNecklace2.NecklaceID);
 
-                Console.WriteLine($"Necklace created.\n{NewNecklace1}");
                 Console.WriteLine($"Necklace Inserted in Db.\n{NewNecklace2}");
                 Console.WriteLine($"Necklace ReadAsync from Db.\n{NewNecklace3}");
 
-                if (NewNecklace1 == NewNecklace2 && NewNecklace1 == NewNecklace3)
+                if (NewNecklace2.NecklaceID == NewNecklace3.NecklaceID)
                     Console.WriteLine("Necklaces Equal");
                 else
                     Console.WriteLine("ERROR: Necklaces not equal");
 
 
                 Console.WriteLine("\nTesting DeleteAsync()");
-                var DelNecklace1 = await _repo.DeleteAsync(NewNecklace1.ID);
-                Console.WriteLine($"Necklace to delete.\n{NewNecklace1}");
-                Console.WriteLine($"Deleted Necklace.\n{DelNecklace1}");
+                var DelNecklace1 = await _repo.DeleteAsync(NewNecklace2.NecklaceID);
+                Console.WriteLine($"Necklace to delete.\n{NewNecklace2}");
+                Console.WriteLine($"Deleted Necklace.\n{NewNecklace2}");
 
-                if (DelNecklace1 != null && DelNecklace1 == NewNecklace1)
+                if (DelNecklace1 != null && DelNecklace1.NecklaceID == NewNecklace2.NecklaceID)
                     Console.WriteLine("Necklace Equal");
                 else
                     Console.WriteLine("ERROR: Necklaces not equal");
 
-                var DelCust2 = await _repo.ReadAsync(DelNecklace1.ID);
+                var DelCust2 = await _repo.ReadAsync(DelNecklace1.NecklaceID);
                 if (DelCust2 != null)
                     Console.WriteLine("ERROR: Necklace not removed");
                 else

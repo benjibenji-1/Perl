@@ -32,7 +32,7 @@ namespace PearlNecklace
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Necklace>()
-                .Property(b => b.ID)
+                .Property(b => b.NecklaceID)
                 .ValueGeneratedOnAdd();
         }
 

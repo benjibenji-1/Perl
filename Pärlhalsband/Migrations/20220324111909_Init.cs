@@ -4,7 +4,7 @@
 
 namespace PearlNecklace.Migrations
 {
-    public partial class initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,13 +12,13 @@ namespace PearlNecklace.Migrations
                 name: "Necklaces",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    NecklaceID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Necklaces", x => x.ID);
+                    table.PrimaryKey("PK_Necklaces", x => x.NecklaceID);
                 });
 
             migrationBuilder.CreateTable(
@@ -41,7 +41,7 @@ namespace PearlNecklace.Migrations
                         name: "FK_Pearls_Necklaces_necklaceID",
                         column: x => x.necklaceID,
                         principalTable: "Necklaces",
-                        principalColumn: "ID",
+                        principalColumn: "NecklaceID",
                         onDelete: ReferentialAction.Cascade);
                 });
 

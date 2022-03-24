@@ -11,6 +11,7 @@ namespace PearlNecklace
         public int ID { get; set; }
 
         public List<Pearl> _pearls { get; set; }
+
         public int price { 
             get
             {
@@ -42,14 +43,32 @@ namespace PearlNecklace
         public int Price()
         {
             int price = 0;
-            foreach (var pearl in _pearls)
+            foreach (var pearl in this._pearls)
             {
                 price += pearl.Price;
             }
             return price;
         }
+        public static class Factory
+        {
+            public static Necklace CreateRandom()
+            {
+                var returnN = new Necklace();
+                var rndList = new List<Pearl>();
+                var rnd = new Random();
+                int pearls = rnd.Next(10, 51);
+                for (int i = 0; i < pearls; i++)
+                {
+                    Pearl pearl = Pearl.Factory.CreateRandomPearl();
+                    rndList.Add(pearl);
+                }
+                returnN._pearls = rndList;
+                return returnN;
+            }
+        }
         public Necklace()
         {
+           
         }
     }
 }

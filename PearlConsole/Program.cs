@@ -77,14 +77,14 @@ namespace PearlConsole
             }
             for (int i = 0; i < 1000; i++)
             {
-                necklaceList.Add(new Necklace());
+                necklaceList.Add(Necklace.Factory.CreateRandom());
             }
 
             necklaceList.ForEach(necklace => database.Necklaces.Add(necklace));
             foreach (var necklace in necklaceList)
             {
                 int necklaceID = necklace.ID;
-                foreach (var pearl in necklace.pearlBag._pearls)
+                foreach (var pearl in necklace._pearls)
                 {
                     pearl.necklaceID = necklaceID;
                     database.Pearls.Add(pearl);
@@ -208,7 +208,7 @@ namespace PearlConsole
 
 
                 Console.WriteLine("\nTesting CreateAsync()");
-                var NewNecklace1 = new Necklace(); //No factory in our program, this should suffice
+                var NewNecklace1 = Necklace.Factory.CreateRandom();
                 var NewNecklace2 = await _repo.CreateAsync(NewNecklace1);
                 var NewNecklace3 = await _repo.ReadAsync(NewNecklace2.ID);
 

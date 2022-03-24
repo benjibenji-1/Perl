@@ -24,7 +24,7 @@ namespace PearlNecklace
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLServer_necklace");
+                var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLServer_necklaceDB");
                 optionsBuilder.UseSqlServer(connectionString);
             }
             base.OnConfiguring(optionsBuilder);

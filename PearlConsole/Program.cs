@@ -189,17 +189,15 @@ namespace PearlConsole
                 // What to update?
                 /*
                 Console.WriteLine("\nTesting UpdateAsync()");
-                LastCust2.FirstName += "_Updated";
-                LastCust2.LastName += "_Updated";
+                LastNecklace2.price += "_Updated";
 
-                var LastCust3 = await _repo.UpdateAsync(LastCust2);
-                Console.WriteLine($"Last Customer with updated names.\n{LastCust2}");
+                var LastCust3 = await _repo.UpdateAsync(LastNecklace2);
+                Console.WriteLine($"Last Customer with updated names.\n{LastNecklace2}");
 
-                if ((LastCust2.FirstName == LastCust3.FirstName) && (LastCust2.LastName == LastCust3.LastName))
+                if ((LastNecklace2.price == LastCust3.price))
                 {
                     Console.WriteLine("Customer Updated");
-                    LastCust3.FirstName = LastCust3.FirstName.Replace("_Updated", "");
-                    LastCust3.LastName = LastCust3.LastName.Replace("_Updated", "");
+                    LastCust3.price = LastCust3.price.Replace("_Updated");
 
                     LastCust3 = await _repo.UpdateAsync(LastCust3);
                     Console.WriteLine($"Last Customer with restored names.\n{LastCust3}");

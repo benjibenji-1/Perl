@@ -27,7 +27,7 @@ namespace PearlNecklace.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    necklaceID = table.Column<int>(type: "int", nullable: false),
+                    NecklaceID = table.Column<int>(type: "int", nullable: false),
                     Size = table.Column<int>(type: "int", nullable: false),
                     Color = table.Column<int>(type: "int", nullable: false),
                     Shape = table.Column<int>(type: "int", nullable: false),
@@ -38,17 +38,17 @@ namespace PearlNecklace.Migrations
                 {
                     table.PrimaryKey("PK_Pearls", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Pearls_Necklaces_necklaceID",
-                        column: x => x.necklaceID,
+                        name: "FK_Pearls_Necklaces_NecklaceID",
+                        column: x => x.NecklaceID,
                         principalTable: "Necklaces",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pearls_necklaceID",
+                name: "IX_Pearls_NecklaceID",
                 table: "Pearls",
-                column: "necklaceID");
+                column: "NecklaceID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

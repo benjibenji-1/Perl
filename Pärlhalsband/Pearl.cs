@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PearlNecklace;
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace PearlNecklace
 {
@@ -15,7 +17,12 @@ namespace PearlNecklace
 	{
 		//const int MinPearlSize = 5;
 		//const int MaxPearlSize = 25;
+		[Key]
+		[Column("ID")]
 		public int ID { get; set; }
+
+		[Column("NecklaceID")]
+		[ForeignKey(nameof(necklaceID))]
 		public int necklaceID { get; set; }
 		public int Size { get; set; }
 		public PearlColor Color { get; set; }
@@ -44,6 +51,7 @@ namespace PearlNecklace
 				return this.Size.CompareTo(other.Size);
 			if (this.Color != other.Color)
 				return this.Color.CompareTo(other.Color);
+
 			return this.Shape.CompareTo(other.Shape);
         }
 		public void RandomInit()
@@ -70,9 +78,9 @@ namespace PearlNecklace
 			return $"{Size}mm\n{Color}\n{Shape}\n{Type}\n{Price} sek\n \n";
 		}
 
-        public bool Equals(Pearl other)
-        {
-			return (Size, Color, Shape, Type) == (other.Size, other.Color, other.Shape, other.Type);
-		}
+		public bool Equals(Pearl other) => (this.Size, this.Color, this.Shape, this.Type) == (other.Size, other.Color, other.Shape, other.Type);
+		public override bool Equals(object obj) => Equals(obj as Pearl);
+		public override int GetHashCode() => (Size, Color, Shape, Type).GetHashCode();
+
 	}
 }

@@ -25,7 +25,8 @@ namespace PearlNecklace.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
@@ -41,7 +42,8 @@ namespace PearlNecklace.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
@@ -61,7 +63,8 @@ namespace PearlNecklace.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("necklaceID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("NecklaceID");
 
                     b.HasKey("ID");
 

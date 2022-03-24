@@ -32,7 +32,7 @@ namespace PearlConsole
             //update-database
 
             
-            //SeedDataBase();
+            SeedDataBase();
             QueryDatabaseAsync().Wait();
             QueryDatabase_Linq();
             QueryDatabase_DataModel_Linq();
@@ -102,8 +102,8 @@ namespace PearlConsole
                 var necklCount = await db.Necklaces.CountAsync();
                 var pearlCount = await db.Pearls.CountAsync();
 
-                Console.WriteLine($"Nr of Customers: {necklCount}");
-                Console.WriteLine($"Nr of Orders: {pearlCount}");
+                Console.WriteLine($"Nr of Necklaces: {necklCount}");
+                Console.WriteLine($"Nr of Pearls: {pearlCount}");
 
                 var n = db.Necklaces.AsEnumerable();
             }

@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace PearlNecklace
 {
     public class Necklace
     {
+        [Key]
+        [Column("ID")]
         public int ID { get; set; }
 
         public virtual List<Pearl> _pearls { get; set; } = new List<Pearl>();
-
+        public Pearl this[int idx] => _pearls[idx];
         public int price { 
             get
             {
@@ -22,6 +28,17 @@ namespace PearlNecklace
         public void Sort()
         {
             _pearls.Sort();
+        }
+        public int Count() => _pearls.Count;
+        public int Count(PearlType type)
+        {
+            int c = 0;
+            foreach (var item in _pearls)
+            {
+                if (type == item.Type)
+                    c++;
+            }
+            return c;
         }
         public override string ToString()
         {

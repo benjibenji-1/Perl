@@ -11,8 +11,8 @@ using PearlNecklace;
 namespace PearlNecklace.Migrations
 {
     [DbContext(typeof(NecklaceDb))]
-    [Migration("20220324111909_Init")]
-    partial class Init
+    [Migration("20220325101049_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

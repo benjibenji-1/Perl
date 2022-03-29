@@ -155,6 +155,7 @@ namespace PearlConsole
             {
                 //Use .AsEnumerable() to make sure the Db request is fully translated to be managed by Linq.
                 //Use ToList() to ensure the Model is fully loaded
+                db.Pearls.ToList();
                 var necklaces = db.Necklaces.AsEnumerable().ToList();
                 //var pearls = db.Pearls.AsEnumerable().ToList(); ---Not being used, price can be found already in necklace
 

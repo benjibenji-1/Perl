@@ -233,7 +233,7 @@ namespace PearlConsole
                 Console.WriteLine("\nTesting ReadAsync()");
                 var LastNecklace1 = AllNecklaces.Last();
                 var LastNecklace2 = await _repo.ReadAsync(LastNecklace1.NecklaceID);
-                Console.WriteLine($"Last Necklace with pearls.\n{LastNecklace1}");
+                Console.WriteLine($"Last Necklace with pearls:\n{LastNecklace1}");
                 Console.WriteLine($"Read Necklace with NecklaceId == Last Necklace\n{LastNecklace2}");
                 if (LastNecklace1 == LastNecklace2)
                     Console.WriteLine("Necklaces Equal");
@@ -242,33 +242,67 @@ namespace PearlConsole
 
 
                 Console.WriteLine("\nTesting CreateAsync()");
+				Console.WriteLine("Testing creating a necklace containing 25 randomized pearls");
                 var NewNecklace2 = await _repo.CreateAsync(Necklace.Factory.CreateRandom(25));
                 var NewNecklace3 = await _repo.ReadAsync(NewNecklace2.NecklaceID);
 
-                Console.WriteLine($"Necklace Inserted in Db.\n{NewNecklace2}");
-                Console.WriteLine($"Necklace ReadAsync from Db.\n{NewNecklace3}");
+                Console.WriteLine($"Necklace Inserted in Db:\n{NewNecklace2}");
+                Console.WriteLine($"Necklace ReadAsync from Db:\n{NewNecklace3}");
 
                 if (NewNecklace2.NecklaceID == NewNecklace3.NecklaceID)
-                    Console.WriteLine("Necklaces Equal");
+                    Console.WriteLine("Necklaces are Equal");
+                else
+                    Console.WriteLine("ERROR: Necklaces not equal");
+
+
+                Console.WriteLine("\nTesting creating a completely randomized necklace");
+                var NewNecklace4 = await _repo.CreateAsync(Necklace.Factory.CreateRandom());
+                var NewNecklace5 = await _repo.ReadAsync(NewNecklace2.NecklaceID);
+
+                Console.WriteLine($"Necklace Inserted in Db:\n{NewNecklace4}");
+                Console.WriteLine($"Necklace ReadAsync from Db:\n{NewNecklace5}");
+
+                if (NewNecklace2.NecklaceID == NewNecklace5.NecklaceID)
+                    Console.WriteLine("Necklaces are Equal");
                 else
                     Console.WriteLine("ERROR: Necklaces not equal");
 
 
                 Console.WriteLine("\nTesting DeleteAsync()");
+				Console.WriteLine("Removing necklace with randomized 25 pearls");
                 var DelNecklace1 = await _repo.DeleteAsync(NewNecklace2.NecklaceID);
-                Console.WriteLine($"Necklace to delete.\n{NewNecklace2}");
-                Console.WriteLine($"Deleted Necklace.\n{NewNecklace2}");
+                Console.WriteLine($"Necklace to delete:\n{NewNecklace2}");
+                Console.WriteLine($"Deleted Necklace:\n{NewNecklace2}");
 
                 if (DelNecklace1 != null && DelNecklace1.NecklaceID == NewNecklace2.NecklaceID)
-                    Console.WriteLine("Necklace Equal");
+                    Console.WriteLine("Necklace are Equal");
                 else
                     Console.WriteLine("ERROR: Necklaces not equal");
 
-                var DelCust2 = await _repo.ReadAsync(DelNecklace1.NecklaceID);
-                if (DelCust2 != null)
-                    Console.WriteLine("ERROR: Necklace not removed");
+                var DelNeck2_id = DelNecklace1.NecklaceID;
+                var DelNeck2 = await _repo.ReadAsync(DelNecklace1.NecklaceID);
+                if (DelNeck2 != null)
+                    Console.WriteLine($"ERROR: Necklace {DelNeck2_id} was not removed");
                 else
-                    Console.WriteLine("Necklace confirmed removed from Db");
+                    Console.WriteLine($"Necklace {DelNeck2_id} confirmed removed from Db");
+
+
+                Console.WriteLine("\nRemoving necklace with randomized amount of pearls");
+                var DelNecklace2 = await _repo.DeleteAsync(NewNecklace4.NecklaceID);
+                Console.WriteLine($"Necklace to delete:\n{NewNecklace4}");
+                Console.WriteLine($"Deleted Necklace:\n{NewNecklace4}");
+
+                if (DelNecklace2 != null && DelNecklace2.NecklaceID == NewNecklace4.NecklaceID)
+                    Console.WriteLine("Necklaces are Equal");
+                else
+                    Console.WriteLine("ERROR: Necklaces not equal");
+
+                var DelNeck3_id = DelNecklace2.NecklaceID;
+                var DelNeck3 = await _repo.ReadAsync(DelNecklace2.NecklaceID);
+                if (DelNeck3 != null)
+                    Console.WriteLine($"ERROR: Necklace {DelNeck3_id} was not removed");
+                else
+                    Console.WriteLine($"Necklace {DelNeck3_id} confirmed removed from Db");
             }
         }
     }

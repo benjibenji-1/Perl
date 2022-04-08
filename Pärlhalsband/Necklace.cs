@@ -15,6 +15,8 @@ namespace PearlNecklace
         [Column("NecklaceID")]
         public int NecklaceID { get; set; }
 
+        [Column("NecklaceName")]
+        public string Name { get; set; }
         public virtual List<Pearl> _pearls { get; set; } = new List<Pearl>();
 
         public Pearl this[int idx] => _pearls [idx];
@@ -64,6 +66,7 @@ namespace PearlNecklace
             }
             return price;
         }
+
         public static class Factory
         {
             /// <summary>
@@ -73,8 +76,12 @@ namespace PearlNecklace
             public static Necklace CreateRandom()
             {
                 var necklace = new Necklace();
-                var rndList = new List<Pearl>();
+
+                string[] names = "Albanian Andorran Austrian Belarussian Belgian Bosnian Bulgarian Croatian Czech Danish Estonian Finnish French German Greek Hungarian Icelandic Irish Italian Latvian Lithuanian Maltan Moldovoan Monacan Dutch Macedonian Serbian Slovakian Swiss Swedish English Bahaman Canadian Cuban Honduran Argentinian Bolivian Brazilian Colombian Benin Chad Egyptian Gabon Ghanan Kenyan Libyan Togo Zambian Afghani Bhutan Cambodian Chinese Georgian Indian Iranian Iraqi Japanese Kuwait Lebanese Mongoloian NorthKorean Syrian Vietnamese Australian Fiji Samoan Tongan".Split(' ');
                 var rnd = new Random();
+                necklace.Name = names[rnd.Next(0, names.Length)];
+
+                var rndList = new List<Pearl>();
                 int pearls = rnd.Next(10, 51);
                 for (int i = 0; i < pearls; i++)
                 {

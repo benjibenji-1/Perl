@@ -18,7 +18,6 @@ namespace PearlNecklace
         [Column("NecklaceName")]
         public string Name { get; set; }
         public virtual List<Pearl> _pearls { get; set; } = new List<Pearl>();
-
         public Pearl this[int idx] => _pearls [idx];
 
         public int price { 
@@ -69,6 +68,8 @@ namespace PearlNecklace
 
         public static class Factory
         {
+			static readonly string[] names = "Albanian Andorran Austrian Belarussian Belgian Bosnian Bulgarian Croatian Czech Danish Estonian Finnish French German Greek Hungarian Icelandic Irish Italian Latvian Lithuanian Maltan Moldovoan Monacan Dutch Macedonian Serbian Slovakian Swiss Swedish English Bahaman Canadian Cuban Honduran Argentinian Bolivian Brazilian Colombian Benin Chad Egyptian Gabon Ghanan Kenyan Libyan Togo Zambian Afghani Bhutan Cambodian Chinese Georgian Indian Iranian Iraqi Japanese Kuwait Lebanese Mongoloian NorthKorean Syrian Vietnamese Australian Fiji Samoan Tongan".Split(' ');
+
             /// <summary>
             /// Create a randomized necklace with 10 to 51 random pearls.
             /// </summary>
@@ -76,8 +77,6 @@ namespace PearlNecklace
             public static Necklace CreateRandom()
             {
                 var necklace = new Necklace();
-
-                string[] names = "Albanian Andorran Austrian Belarussian Belgian Bosnian Bulgarian Croatian Czech Danish Estonian Finnish French German Greek Hungarian Icelandic Irish Italian Latvian Lithuanian Maltan Moldovoan Monacan Dutch Macedonian Serbian Slovakian Swiss Swedish English Bahaman Canadian Cuban Honduran Argentinian Bolivian Brazilian Colombian Benin Chad Egyptian Gabon Ghanan Kenyan Libyan Togo Zambian Afghani Bhutan Cambodian Chinese Georgian Indian Iranian Iraqi Japanese Kuwait Lebanese Mongoloian NorthKorean Syrian Vietnamese Australian Fiji Samoan Tongan".Split(' ');
                 var rnd = new Random();
                 necklace.Name = names[rnd.Next(0, names.Length)];
 
@@ -100,6 +99,9 @@ namespace PearlNecklace
             public static Necklace CreateRandom(int amount)
             {
                 var necklace = new Necklace();
+                var rnd = new Random();
+                necklace.Name = names[rnd.Next(0, names.Length)];
+
                 var rndList = new List<Pearl>();
                 for (int i = 0; i < amount; i++)
                 {

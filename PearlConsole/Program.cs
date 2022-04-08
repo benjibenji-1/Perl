@@ -33,10 +33,10 @@ namespace PearlConsole
 
             
             //SeedDataBase();
-            QueryDatabaseAsync().Wait();
-            QueryDatabase_Linq();
-            QueryDatabase_DataModel_Linq();
-            QueryDatabasePearlCRUDE().Wait();
+            //QueryDatabaseAsync().Wait();
+            //QueryDatabase_Linq();
+            //QueryDatabase_DataModel_Linq();
+            //QueryDatabasePearlCRUDE().Wait();
             QueryDatabaseNecklaceCRUDE().Wait();
 
             Console.WriteLine("\nPress any key to terminate");

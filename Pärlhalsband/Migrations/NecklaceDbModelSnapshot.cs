@@ -30,6 +30,11 @@ namespace PearlNecklace.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NecklaceID"), 1L, 1);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("NecklaceName");
+
                     b.Property<int>("price")
                         .HasColumnType("int");
 

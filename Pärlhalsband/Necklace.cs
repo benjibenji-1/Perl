@@ -36,11 +36,12 @@ namespace PearlNecklace
         {
             int returnPrice = 0;
             int NumberOfPearls = this._pearls.Count;
+            string name = this.Name;
             foreach (var item in this._pearls)
             {
                 returnPrice += item.Price;
             }
-            return $"Necklace {this.NecklaceID}: {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
+            return $"Necklace {this.NecklaceID}: Name: {name}, {NumberOfPearls} Pearls, Price: {returnPrice} SEK";
         }
         public void ShowPearls()
         {
